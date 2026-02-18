@@ -23,10 +23,10 @@
     state: restarted
     daemon_reload: true
 
-- name: Start and enable user service
+- name: start user
   ansible.builtin.service:
-    service: user
-    state: started
+    name: "{{ comment }}"
+    state: restarted
     enabled: yes
 
 
