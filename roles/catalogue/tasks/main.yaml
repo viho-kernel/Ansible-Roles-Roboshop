@@ -1,12 +1,12 @@
-- name: Calling dependencies
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: nodejs-template.yaml
-
 - name: Creating user
   ansible.builtin.import_role:
     name: common
     tasks_from: user-template.yaml
+
+- name: Calling dependencies
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs-template.yaml
 
 - name: "Starting {{ component }} service"
   ansible.builtin.import_role:
@@ -32,8 +32,6 @@
   when: catalogue_output.stdout  | int < 0
 
 - name: start catalogue
-  tags: 
-  - deployment
   ansible.builtin.service:
     name: catalogue
     state: restarted
