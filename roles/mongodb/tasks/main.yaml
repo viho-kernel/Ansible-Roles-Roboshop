@@ -3,9 +3,9 @@
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
 
-- name: "Instsalling {{ component }}"
+- name: "Installing {{ component }}"
   ansible.builtin.dnf:
-  - name: mongodb-org
+    name: mongodb-org
     state: present
 
 - name: allow remote connections
@@ -16,6 +16,6 @@
 
 - name: "Enabling {{ component }} service"
   ansible.builtin.services:
-  - name: mongodb-org
+    name: mongodb-org
     enabled: yes
     state: present
