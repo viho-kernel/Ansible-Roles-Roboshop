@@ -1,7 +1,7 @@
 - name: Creating user
   ansible.builtin.import_role:
     name: common
-    tasks_from: user-template.yaml
+    tasks_from: app-setup.yaml
 
 - name: Calling dependencies
   ansible.builtin.import_role:
