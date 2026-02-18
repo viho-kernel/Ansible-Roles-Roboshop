@@ -6,12 +6,12 @@
 - name: Calling dependencies
   ansible.builtin.import_role:
     name: common
-    tasks_from: nodejs-template.yaml
+    tasks_from: nodejs-setup.yaml
 
 - name: "Starting {{ component }} service"
   ansible.builtin.import_role:
     name: common
-    tasks_from: service-template.yaml
+    tasks_from: systemd-setup.yaml
 
 - name: copy mongo repo
   ansible.builtin.copy:
