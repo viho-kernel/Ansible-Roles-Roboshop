@@ -1,9 +1,9 @@
-- name: "Copying {{ component }} file"
+- name: copy mongo repo
   ansible.builtin.copy:
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
 
-- name: "Installing {{ component }}"
+- name: install mongodb server
   ansible.builtin.dnf:
     name: mongodb-org
     state: present
@@ -14,8 +14,8 @@
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
-- name: "Enabling {{ component }} service"
+- name: start and enable mongodb
   ansible.builtin.service:
-    name: mongodb-org
+    name: mongod
     enabled: yes
-    state: present
+    state: started
