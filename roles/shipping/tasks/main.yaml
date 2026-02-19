@@ -1,12 +1,12 @@
-- name: Dependencies form Java
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: java-setup.yaml
-
 - name: Creating user
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup.yaml
+
+- name: Dependencies form Java
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: java-setup.yaml
 
 - name: Copying service file
   ansible.builtin.import_role:
