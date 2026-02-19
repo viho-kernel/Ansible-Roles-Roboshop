@@ -13,15 +13,20 @@
     name: common
     tasks_from: systemd-setup.yaml
 
-- name: Loading Schedma database
-  ansible.builtin.command: "{{ item }}"
+- name: Ensure Python MySQL driver is installed
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    executable: pip3.9
   loop:
-  - " mysql -h {{ MYSQL_HOST }} -uroot -pRoboShop@1 < /app/db/schema.sql"
-  - " mysql -h {{ MYSQL_HOST }} -uroot -pRoboShop@1 < /app/db/app-user.sql "
-  - " mysql -h {{ MYSQL_HOST }} -uroot -pRoboShop@1 < /app/db/master-data.sql "
+  - cryptography
+  - PyMySQL
+
+
+
 
 - name: Restarting service
   ansible.builtin.systemd_service:
     service: "{{ component }}"
     state: restarted
+    enabled: yes
 
