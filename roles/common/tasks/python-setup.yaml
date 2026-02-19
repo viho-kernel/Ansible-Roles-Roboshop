@@ -9,6 +9,7 @@
 
 - name: Installing requirements
   ansible.builtin.pip:
-    name: requirements.txt
-    state: present
-    executable: pip3
+    requirements: requirements.txt
+    executable: pip3.9
+  args:
+   chdir: /app
