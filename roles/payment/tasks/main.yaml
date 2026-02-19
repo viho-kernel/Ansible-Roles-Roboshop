@@ -1,18 +1,18 @@
-- name: Installing python dependencies
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: python-setup.yaml
-
 - name: setting up roboshop user
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup.yaml
 
+- name: Installing python dependencies
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python-setup.yaml
+
 - name: setting up services
   ansible.builtin.import_role:
     name: common
     tasks_from: systemd-setup.yaml
-    
+
 - name: start payment
   ansible.builtin.service:
     name: "{{ component }}"
