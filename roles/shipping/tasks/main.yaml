@@ -1,7 +1,7 @@
 - name: Dependencies form Java
   ansible.builtin.import_role:
     name: common
-    import_from: java-setup.yaml
+    tasks_from: java-setup.yaml
 
 - name: Creating user
   ansible.builtin.import_role:
@@ -11,7 +11,7 @@
 - name: Copying service file
   ansible.builtin.import_role:
     name: common
-    import_from: systemd-setup.yaml
+    tasks_from: systemd-setup.yaml
 
 - name: Loading Schedma database
   ansible.builtin.command: "{{ item }}"
