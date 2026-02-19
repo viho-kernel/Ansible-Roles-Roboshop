@@ -1,5 +1,5 @@
 - name: Dependencies form Java
-  ansible.builtin.import_roles:
+  ansible.builtin.import_role:
     name: common
     import_from: java-setup.yaml
 
@@ -9,7 +9,7 @@
     tasks_from: app-setup.yaml
 
 - name: Copying service file
-  ansible.builtin.import_roles:
+  ansible.builtin.import_role:
     name: common
     import_from: systemd-setup.yaml
 
