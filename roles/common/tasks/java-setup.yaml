@@ -6,13 +6,12 @@
   - maven
   - mysql
 
-- name: Installing Dependencies
+- name: install dependencies
   ansible.builtin.command: mvn clean package
   args:
     chdir: /app
 
-- name: moving package
-  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+- name: rename jar file
+  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar 
   args:
     chdir: /app
-    
