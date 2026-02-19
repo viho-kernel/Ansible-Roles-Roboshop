@@ -1,0 +1,14 @@
+- name: Setting up Python
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - python3
+  - gcc
+  - python3-devel
+
+- name: Installing requirements
+  ansible.builtin.pip:
+    name: requirements.txt
+    state: present
+    executable: pip3
