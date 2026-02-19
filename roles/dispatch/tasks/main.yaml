@@ -1,0 +1,30 @@
+- name: Installing golan
+  ansible.builtin.dnf:
+    name: golang
+    state: present
+
+- name: Setting up user
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: Installing go dependencies
+  ansible.builtin.command: "{{ item }}"
+  loop:
+  - go mod init dispatch
+  - go get
+  - go build
+
+  args:
+    chdir: /app
+
+- name: System setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup.yaml
+
+- name: Starting dispatch service
+  ansible.builtin.service:
+    name: "{{ component }}"
+    enabled: yes
+    state: restarted
