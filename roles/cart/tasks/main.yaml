@@ -8,13 +8,13 @@
     name: common
     tasks_from: nodejs-setup.yaml
 
-- name: "Starting {{ component }} service"
+- name: systemd setup
   ansible.builtin.import_role:
     name: common
     tasks_from: systemd-setup.yaml
-    
+
 - name: start cart
   ansible.builtin.service:
-    name: "{{ component }}"
+    name: cart
     state: restarted
     enabled: yes
