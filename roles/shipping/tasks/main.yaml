@@ -1,0 +1,27 @@
+- name: Dependencies form Java
+  ansible.builtin.import_roles:
+    name: common
+    import_from: java-setup.yaml
+
+- name: Creating user
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: Copying service file
+  ansible.builtin.import_roles:
+    name: common
+    import_from: systemd-setup.yaml
+
+- name: Loading Schedma database
+  ansible.builtin.command: "{{ item }}"
+  loop:
+  - " mysql -h {{ MYSQL_HOST }} -uroot -pRoboShop@1 < /app/db/schema.sql"
+  - " mysql -h {{ MYSQL_HOST }} -uroot -pRoboShop@1 < /app/db/app-user.sql "
+  - " mysql -h {{ MYSQL_HOST }} -uroot -pRoboShop@1 < /app/db/master-data.sql "
+
+- name: Restarting service
+  ansible.builtin.systemd_service:
+    service: "{{ component }}"
+    state: restarted
+

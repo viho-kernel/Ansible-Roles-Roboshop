@@ -1,0 +1,18 @@
+- name: Installing Mavan
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - maven
+  - mysql
+
+- name: Installing Dependencies
+  ansible.builtin.command: mvn clean package
+  args:
+    chdir: /app
+
+- name: moving package
+  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+  args:
+    chdir: /app
+    
