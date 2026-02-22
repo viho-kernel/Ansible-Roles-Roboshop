@@ -1,28 +1,18 @@
 plugin: amazon.aws.aws_ec2
-region:
+regions:
 - us-east-1
 
 filters:
   instance-state-name: running
   tag:Project: roboshop
-  tag:Environment: "{{ env }}"
-  tag:Name: "{{ item }}-dev"
-  loop:
-  - mongodb
-  - catalogue
-  - frontend
-  - redis
-  - user
-  - cart
-  - mysql
-  - rabbitmq
-  - shipping
-  - payment
-  - dispatch
+  tag:Environment: "{{ enviro }}"
   
 keyed_groups:
-  - key: tags.Name
-    prefix: ""
+  - key: tags.component
+    seperator: ' '
 
+compose:
+  ansible_host: private-ip-address
+  
 hostnames:
 - private-ip-address
