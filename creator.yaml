@@ -88,6 +88,16 @@
       wait: true
     loop: "{{ instances }}"
     when: action == "start"
+
+  - name: Start the specified instances
+    amazon.aws.ec2_instance:
+      # Use filters to find instances by the Name tag you created
+      filters:
+        "tag:Name": "{{ item }}-{{ enviro }}"
+        instance-state-name: running
+      state: stopped
+    loop: "{{ instances }}"
+    when: action == "stop"
     
   - name: Delete router 53 records
     amazon.aws.route53:
