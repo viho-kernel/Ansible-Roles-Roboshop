@@ -10,4 +10,4 @@
     state: restarted
 
 - name: setting default password for Mysqld
-  ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1
+  ansible.builtin.command: mysql_secure_installation --set-root-pass "{{MYSQL_ROOT_PASSWORD}}"
