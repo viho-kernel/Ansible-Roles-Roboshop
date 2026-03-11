@@ -30,9 +30,8 @@
   community.rabbitmq.rabbitmq_user:
     user: "{{ RABBITMQ_USER }}"
     password: "{{ RABBITMQ_PASSWORD }}"
-    permissions:
-      - vhost: /
-        configure_priv: .*
-        read_priv: .*
-        write_priv: .*
+    vhost: /
+    configure_priv: ".*"
+    read_priv: ".*"
+    write_priv: ".*"
     state: present
