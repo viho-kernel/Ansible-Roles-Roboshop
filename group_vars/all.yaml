@@ -9,3 +9,4 @@ MYSQL_HOST: mysql-"{{ env }}".opsora.space
 SHIPPING_HOST: shipping-"{{ env }}".opsora.space
 RABBITMQ_HOST: rabbitmq-"{{ env }}".opsora.space
 DISPATCH_HOST: dispatch-dev.opsora.space
+app_version: v3
