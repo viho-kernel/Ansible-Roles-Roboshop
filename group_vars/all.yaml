@@ -1,12 +1,12 @@
 ansible_user: ec2-user
 ansible_password: DevOps321
-MONGODB_HOST: mongodb-"{{ env }}".opsora.space
-CATALOGUE_HOST: catalogue-"{{ env }}".opsora.space
-REDIS_HOST: redis-"{{ env }}".opsora.space
-USER_HOST: user-"{{ env }}".opsora.space
-CART_HOST: cart-"{{ env }}".opsora.space
-MYSQL_HOST: mysql-"{{ env }}".opsora.space
-SHIPPING_HOST: shipping-"{{ env }}".opsora.space
-RABBITMQ_HOST: rabbitmq-"{{ env }}".opsora.space
-DISPATCH_HOST: dispatch-dev.opsora.space
+MONGODB_HOST: mongodb-{{ env }}.opsora.space
+REDIS_HOST: redis-{{ env }}.opsora.space
+MYSQL_HOST: mysql-{{ env }}.opsora.space
+RABBITMQ_HOST: rabbitmq-{{ env }}.opsora.space
+CATALOGUE_HOST: catalogue.backend-alb-{{ env }}.opsora.space
+USER_HOST: user.backend-alb-{{ env }}.opsora.space
+CART_HOST: cart.backend-alb-{{ env }}.opsora.space
+SHIPPING_HOST: shipping.backend-alb-{{ env }}.opsora.space
+PAYMENT_HOST: payment.backend-alb-{{ env }}.opsora.space
 app_version: v3
